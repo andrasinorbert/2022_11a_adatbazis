@@ -53,9 +53,59 @@ def selectDB(oszlopnevek, where=1):
     conn.close()
     return rows
 
+def updateDB(mit, mire, szuresfelt=1):
+    conn=connectDB(
+        _host=defaults["DB_HOST"],
+        _port=defaults["DB_PORT"],
+        _database=defaults["DB_NAME"],
+        _user=defaults["DB_USER"],
+        _password=defaults["DB_PASSWD"]
+    )
+    cursor=conn.cursor()
+    sql=f""" UPDATE szemelyek
+            SET {mit}={mire}
+            WHERE {szuresfelt};"""
+    cursor.execute(sql)
+    conn.commit()
+    conn.close()
+
+def deleteDB(felt=0):
+    conn=connectDB(
+        _host=defaults["DB_HOST"],
+        _port=defaults["DB_PORT"],
+        _database=defaults["DB_NAME"],
+        _user=defaults["DB_USER"],
+        _password=defaults["DB_PASSWD"]
+    )
+    cursor=conn.cursor()
+    sql=f""" DELETE FROM `szemelyek` WHERE {felt};"""
+    cursor.execute(sql)
+    conn.commit()
+    conn.close()
+
+def truncateTable(tablename):
+    conn=connectDB(
+        _host=defaults["DB_HOST"],
+        _port=defaults["DB_PORT"],
+        _database=defaults["DB_NAME"],
+        _user=defaults["DB_USER"],
+        _password=defaults["DB_PASSWD"]
+    )
+    cursor=conn.cursor()
+    sql=f"""TRUNCATE TABLE {tablename};"""
+    cursor.execute(sql)
+    conn.commit()
+    conn.close()
+
 #insertDB("Sanyi", 14, 150)
 
-sorok=selectDB("név")
+#updateDB("magasság", 1500, "id=2")
+
+#deleteDB("id=2")
+truncateTable("szemelyek")
+
+
+sorok=selectDB("*")
 
 for i in sorok:
     print(i)
