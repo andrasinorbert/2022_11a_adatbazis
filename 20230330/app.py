@@ -99,13 +99,7 @@ def truncateTable(tablename):
 
 #insertDB("Sanyi", 14, 150)
 
-#updateDB("magasság", 1500, "id=2")
-
-#deleteDB("id=2")
-truncateTable("szemelyek")
-
-
-sorok=selectDB("*")
+sorok=selectDB("név")
 
 for i in sorok:
     print(i)
