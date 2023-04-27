@@ -81,13 +81,48 @@ def createDB(dbname):
 def dropDB(dbname):
     sql=f"DROP DATABASE IF EXISTS {dbname};"
     doItDB(sql)
-    
 
+class Oszlop:
+    def __init__(self, nev, tipus, megszoritas):
+        self.name=nev
+        self.type=tipus
+        self.constraints=megszoritas
+        
+    def __str__(self):
+        return f"{self.name} {self.type} {self.constraints}"
     
+#x=Oszlop("név", "varchar(50)", "not null")
+#x.name="Zolika"
+#print(x)
+
+def createTable(tablename, rowlist):
+    sql=f"CREATE TABLE {tablename}("
     
-createDB("tesztdb")
-dropDB("tesztdb")
+    for i in rowlist:
+        sql+= f"{i},"
+    #sql=sql[:len(sql)-1]
+    sql+=f"PRIMARY KEY ({rowlist[0].name})"
+    sql+= ");"
+    doItDB(sql)
     
+lista=[]
+lista.append(Oszlop("id", "INT", "NOT NULL AUTO_INCREMENT"))
+lista.append(Oszlop("név", "VARCHAR(50)", "NOT NULL"))
+lista.append(Oszlop("kor", "INT", "NOT NULL"))
+
+createTable("adatok_v2", lista)
+
+# Megszoritások:
+#NOT NULL - Ensures that a column cannot have a NULL value
+#UNIQUE - Ensures that all values in a column are different
+#PRIMARY KEY - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
+#FOREIGN KEY - Prevents actions that would destroy links between tables
+#CHECK - Ensures that the values in a column satisfies a specific condition
+#DEFAULT - Sets a default value for a column if no value is specified
+#CREATE INDEX - Used to create and retrieve data from the database very quickly
+
+
+
 #insertDB("Sanyi", 14, 150)
 
 #updateDB("magasság", 1500, "id=2")
