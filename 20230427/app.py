@@ -82,8 +82,7 @@ def dropDB(dbname):
     sql=f"DROP DATABASE IF EXISTS {dbname};"
     doItDB(sql)
     
-CREATE TABLE 11a.ValamiTable` (`id` INT NOT NULL AUTO_INCREMENT , `név` VARCHAR(50) NOT NULL , `kor` INT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
-    
+
     
     
 createDB("tesztdb")
