@@ -112,15 +112,61 @@ lista.append(Oszlop("kor", "INT", "NOT NULL"))
 
 createTable("adatok_v2", lista)
 
-# Megszoritások:
-#NOT NULL - Ensures that a column cannot have a NULL value
-#UNIQUE - Ensures that all values in a column are different
-#PRIMARY KEY - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
-#FOREIGN KEY - Prevents actions that would destroy links between tables
-#CHECK - Ensures that the values in a column satisfies a specific condition
-#DEFAULT - Sets a default value for a column if no value is specified
-#CREATE INDEX - Used to create and retrieve data from the database very quickly
-
+# CREATE TABLE Megszoritások:
+    #NOT NULL - nem lehet NULL
+        # Ensures that a column cannot have a NULL value
+    #UNIQUE - egyediségi kényszer
+        # Ensures that all values in a column are different
+        # create table dolgozok (
+        #     az int not null primary key auto_increment,
+        #     ig varchar(10) unique,
+        #     nev varchar(50)
+        # );
+    #PRIMARY KEY - kulcs
+        # A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
+        # create table osztalyok(
+        #     az int not null primary key auto_increment,
+        #     nev varchar(50)
+        # );
+        # ez ugyanaz, viszont ha több mint 1 attributum van, csak igy lehet:
+        # create table osztalyok(
+        #     az int not null auto_increment,
+        #     nev varchar(50),
+        #     primary key(az)
+        # );
+    #FOREIGN KEY - idegen kulcs
+        # Prevents actions that would destroy links between tables
+        # create table osztalyok(
+        #     az int not null primary key auto_increment,
+        #     nev varchar(50)
+        # );
+        # 
+        # create table dolgozok(
+        #     az int not null primary key auto_increment,
+        #     nev varchar(50),
+        #     osztalyAz int,
+        #     foreign key (osztalyAz) references osztalyok (az)
+        # );
+    #CHECK - ellenőrzés
+        # Ensures that the values in a column satisfies a specific condition
+        # create table szamok (
+        #     szam1 int check (szam1 >= 5),
+        #     szam2 int check (szam2 >= 5),
+        #     constraint nagyobb check (szam1>szam2)
+        # );
+    #DEFAULT - alapértelmezett érték
+        # Sets a default value for a column if no value is specified
+        # CREATE TABLE Persons (
+        #     ID int NOT NULL,
+        #     LastName varchar(255) NOT NULL,
+        #     FirstName varchar(255),
+        #     Age int,
+        #     City varchar(255) DEFAULT 'Sandnes'
+        # );
+    #CREATE INDEX - indexelje az értékeket
+        # ez azt jelenti, hogy gyorsabban tudunk keresni a megadottak közt
+        # Used to create and retrieve data from the database very quickly
+        
 
 
 #insertDB("Sanyi", 14, 150)
@@ -135,3 +181,4 @@ createTable("adatok_v2", lista)
 
 #for i in sorok:
 #    print(i)
+
