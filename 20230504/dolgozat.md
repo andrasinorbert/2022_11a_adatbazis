@@ -1,21 +1,31 @@
 # SQL dolgozat
 
-1. DDL - Data Definition Language:
-    - create database
-    - drop database
-    - create table
-        - megszorítások is
-        - create index
-    - drop table
-    - truncate table
-    - alter table
-    - view-k
-1. DML - Data Manipulation Language:
-    - insert
-    - update
-    - delete
-1. DQL - Data Query Language - select lekérdezések
-1. Mentés - backup készítés
+1. [DDL - Data Definition Language](#ddl---data-definition-language)
+    - [Database](#database)
+    - [Table](#table)
+      - [Típusok](#tipusok)
+      - [Megszoritások](#megszoritások)
+      - [Index](#index)
+      - [Alter table](#alter-table)
+      - [View](#view)
+1. [DML - Data Manipulation Language](#dml---data-manipulation-language)
+    - [Insert](#insert)
+    - [Update](#update)
+    - [Delete](#delete)
+1. [DQL - Data Query Language](#dql---data-query-language)
+    - [Select](#select)
+      - [Aggregáló függvények](#aggregáló-függvények)
+      - [CASE](#case)
+      - [TOP](#top-number)
+      - [DISTINCT](#distinct)
+    - [Rendezés - Order By](#rendezés)
+    - [Szűrés - Where](#szűrés)
+      - [Wildcards](#wildcards)
+    - [Joins](#joins)
+    - [Csoportosítás - Group By](#csoportosítás)
+    - [Having](#újabb-feltétel---having)
+    - [Halmazműveletek](#műveletek-select-ek-közt)
+1. [Mentés - backup készítés](#backup)
 
 ## DDL - Data Definition Language
 
@@ -45,7 +55,9 @@ DROP TABLE tablename;
 TRUNCATE TABLE tablename; 
 ```
 
-Tipusok:(ennél több van, de elég csak ennyit tudni egyelőre)
+#### Tipusok
+
+(ennél több van, de elég csak ennyit tudni egyelőre)
 
 - VARCHAR(size)
 - BOOL
@@ -58,7 +70,7 @@ Tipusok:(ennél több van, de elég csak ennyit tudni egyelőre)
 - TIME
 - YEAR
 
-Megszoritások:
+#### Megszoritások
 
 - NOT NULL
   - nem lehet NULL
@@ -145,7 +157,7 @@ Megszoritások:
   - ez azt jelenti, hogy gyorsabban tudunk keresni a megadottak közt
   - Used to create and retrieve data from the database very quickly
 
-#### index
+#### Index
 
 ```sql
 -- duplicate values are allowed
@@ -176,6 +188,7 @@ DROP INDEX index_name;
 ```
 
 #### ALTER TABLE
+
 ```sql
 ALTER TABLE table_name
 ADD column_name datatype;
@@ -216,7 +229,7 @@ DROP VIEW view_name;
 
 ## DML - Data Manipulation Language
 
-### insert
+### Insert
 
 ```sql
 INSERT INTO `tablename`('oszlopnév1','oszlopnév2','oszlopnév3')
@@ -235,7 +248,7 @@ VALUES
     (value_list_n);
 ```
 
-### update
+### Update
 
 ```sql
 UPDATE tablename
@@ -243,7 +256,7 @@ SET mit=mire
 WHERE szuresfelt;
 ```
 
-### delete
+### Delete
 
 ```sql
 DELETE FROM tablename WHERE felt;
@@ -251,7 +264,7 @@ DELETE FROM tablename WHERE felt;
 
 ## DQL - Data Query Language
 
-### alap
+### Select
 
 ```sql
 select oszloplista
